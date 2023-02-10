@@ -3,11 +3,13 @@
     "title": "Posts",
     "form": {
       "title": "tytuł",
-      "body": "treść",
+      "content": "ntkj",
+      "description": "description",
       "validation": {
         "title-required": "tytuł nie może być pusty",
         "title-max": "tytuł nie może przekroczyć {{num}} znaków",
-        "body-required": "treść nie może być pusta"
+        "content-required": "treść nie może być pusta",
+        "description-required": "description can't be empty"
       }
     },
     "buttons": {
@@ -21,13 +23,29 @@
     "title": "O Nas",
     "back": "Powrót do Strony Domowej"
   },
+  "login": {
+    "title": "Login",
+    "back": "Powrót do Strony Domowej",
+    "form": {
+      "identifier": "email",
+      "password": "password",
+      "validation": {
+        "identifier-required": "email can't be empty",
+        "password-required": "password can't be empty"
+      }
+    },
+    "buttons": {
+      "login": "login"
+    }
+  },
   "company": {
     "title": "Nazwa Firmy"
   },
   "navigation": {
     "links": {
       "home": "Strona Domowa",
-      "about": "O Nas"
+      "about": "O Nas",
+      "login": "Login"
     }
   }
 }

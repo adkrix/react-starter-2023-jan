@@ -3,6 +3,7 @@ import { initReactI18next } from 'react-i18next';
 
 import en from 'config/i18n/locales/en.translation.json';
 import pl from 'config/i18n/locales/pl.translation.json';
+import ru from 'config/i18n/locales/ru.translation.json';
 
 i18n.use(initReactI18next).init({
   lng: 'en',
@@ -10,6 +11,9 @@ i18n.use(initReactI18next).init({
   resources: {
     en: {
       translation: en,
+    },
+    ru: {
+      translation: ru,
     },
     pl: {
       translation: pl,

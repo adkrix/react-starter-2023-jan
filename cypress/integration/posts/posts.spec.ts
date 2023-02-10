@@ -3,7 +3,7 @@ describe('Feature - Posts', () => {
     cy.visit('/')
 
     cy.findByRole('textbox', { name: /title/i }).type('Hello from Cypress!')
-    cy.findByRole('textbox', { name: /body/i }).type('This is our first Cypress test😊')
+    cy.findByRole('textbox', { name: /content/i }).type('This is our first Cypress test😊')
 
     cy.findByRole('button', { name: /add new post/i }).click()
 

@@ -1,4 +1,6 @@
-import { getPosts } from 'features/posts/api/index';
+import { describe, expect, it } from '@jest/globals';
+
+import { getPosts } from '../index';
 import fixture from 'test/msw/fixtures/db.initial.data.json';
 
 describe('Post API test - MSW example', () => {
@@ -10,6 +12,6 @@ describe('Post API test - MSW example', () => {
     const result = await getPosts();
 
     // Then
-    expect(result).toEqual(posts);
+    expect(result).toEqual({ data: posts, meta: {} });
   });
 });

@@ -1,10 +1,12 @@
-export type Post = {
-  id?: string;
+import { TIdKey } from 'libs/redux';
+
+export type PostAttributes = {
   title: string;
-  body: string;
+  description: string;
+  content: string;
 };
 
-export type PostFormInput = {
-  title: string;
-  body: string;
+export type Post = {
+  id: TIdKey;
+  attributes: PostAttributes;
 };

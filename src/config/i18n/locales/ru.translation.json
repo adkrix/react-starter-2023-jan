@@ -1,0 +1,51 @@
+{
+  "home": {
+    "title": "Posts",
+    "form": {
+      "title": "заголовок",
+      "description": "описание",
+      "content": "тело",
+      "validation": {
+        "title-required": "заголовок не может быть пустым",
+        "title-max": "заголовок не должен сожержать {{num}} символов",
+        "description-required": "описание не может быть пустым",
+        "content-required": "тело не может быть пустым"
+      }
+    },
+    "buttons": {
+      "submit": "Добавь новый пост",
+      "reset": "Сбросить",
+      "delete": "Удалить",
+      "update": "Обновить"
+    }
+  },
+  "about": {
+    "title": "О нас",
+    "back": "Обратно на Главную"
+  },
+  "login": {
+    "title": "Логин",
+    "back": "Обратно на Главную",
+    "form": {
+      "identifier": "email",
+      "password": "password",
+      "validation": {
+        "identifier-required": "email can't be empty",
+        "password-required": "password can't be empty"
+      }
+    },
+    "buttons": {
+      "login": "login"
+    }
+  },
+  "company": {
+    "title": "Название компании"
+  },
+  "navigation": {
+    "links": {
+      "home": "Главная",
+      "about": "О нас",
+      "login": "Логин"
+    }
+  }
+}

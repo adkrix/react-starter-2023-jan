@@ -50,8 +50,18 @@ const Header = (props: HeaderProps) => {
             >
               {t('navigation.links.about')}
             </Link>
+            <Link
+              component={RouterLink}
+              to={'/login'}
+              variant="button"
+              color="text.primary"
+              sx={{ my: 1, mx: 1.5 }}
+            >
+              {t('navigation.links.login')}
+            </Link>
             <ButtonGroup variant="text" color="inherit">
               <Button onClick={() => onChangeLanguage('en')}>🇺🇸</Button>
+              <Button onClick={() => onChangeLanguage('ru')}>🇷🇺</Button>
               <Button onClick={() => onChangeLanguage('pl')}>🇵🇱</Button>
             </ButtonGroup>
             <IconButton sx={{ ml: 1 }} onClick={onChangeThemeClick} color="inherit">

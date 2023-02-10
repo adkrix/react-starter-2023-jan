@@ -4,10 +4,14 @@ import { call } from 'redux-saga-test-plan/matchers';
 
 import { getPosts } from 'features/posts/api';
 import { onGetPosts } from 'features/posts/store/posts.sagas';
-import postsReducer, { postsActions } from 'features/posts/store/posts.slice';
+import postsReducer, { initPostState, postsActions } from 'features/posts/store/posts.slice';
 import { Post } from 'features/posts/types';
+import { SucceededResponse } from 'libs/core/api';
 
-const expectedSagaPosts: Post[] = [{ id: '1', title: 'saga-test-example', body: nanoid() }];
+const expectedSagaPosts: SucceededResponse<Post[]> = {
+  data: [{ id: '1', attributes: { title: 'saga-test-example', description: 'Description', content: nanoid() } }],
+  meta: {},
+};
 
 describe('Saga - test examples', () => {
   it('should execute commands in exact order with redux-saga-test-plan', async () =>
@@ -30,7 +34,8 @@ describe('Saga - test examples', () => {
       .withReducer(postsReducer)
       .provide([[call(getPosts), expectedSagaPosts]])
       .hasFinalState({
-        posts: expectedSagaPosts,
+        ...initPostState(),
+        items: expectedSagaPosts.data,
       })
       .run());
 });

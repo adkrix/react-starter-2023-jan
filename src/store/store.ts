@@ -5,7 +5,7 @@ import { createReduxHistoryContext } from 'redux-first-history';
 import logger from 'redux-logger';
 
 import { Env } from 'config/Env';
-import postsReducer from 'features/posts/store/posts.slice';
+import featuresReducer from 'features/reducers';
 import { rootSaga } from 'store/rootSaga';
 
 const { createReduxHistory, routerMiddleware, routerReducer } = createReduxHistoryContext({
@@ -19,7 +19,7 @@ const makeStore = () => {
 
   const store = configureStore({
     reducer: {
-      posts: postsReducer,
+      ...featuresReducer,
       router: routerReducer,
     },
     devTools: Env.isDev(),
@@ -39,5 +39,7 @@ export const store = makeStore();
 
 export type AppDispatch = typeof store.dispatch;
 export type RootState = ReturnType<typeof store.getState>;
+export type RootStateKey = keyof RootState;
+export type RootStateCrudKey = keyof Omit<RootState, 'router' | 'auth'>;
 
 export const history = createReduxHistory(store);

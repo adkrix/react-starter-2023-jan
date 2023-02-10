@@ -3,11 +3,13 @@
     "title": "Posts",
     "form": {
       "title": "title",
-      "body": "body",
+      "content": "content",
+      "description": "description",
       "validation": {
         "title-required": "title can't be empty",
         "title-max": "title must not exceed {{num}} characters",
-        "body-required": "body can't be empty"
+        "content-required": "content can't be empty",
+        "description-required": "description can't be empty"
       }
     },
     "buttons": {
@@ -21,13 +23,29 @@
     "title": "About Page",
     "back": "Back to Home"
   },
+  "login": {
+    "title": "Login Page",
+    "back": "Back to Home",
+    "form": {
+      "identifier": "email",
+      "password": "password",
+      "validation": {
+        "identifier-required": "email can't be empty",
+        "password-required": "password can't be empty"
+      }
+    },
+    "buttons": {
+      "login": "login"
+    }
+  },
   "company": {
     "title": "Company name"
   },
   "navigation": {
     "links": {
       "home": "Home",
-      "about": "About"
+      "about": "About",
+      "login": "Login"
     }
   }
 }

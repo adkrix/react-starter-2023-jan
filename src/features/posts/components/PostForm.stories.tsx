@@ -2,10 +2,10 @@ import { Container } from '@mui/material';
 import { ComponentMeta, ComponentStory } from '@storybook/react';
 import React from 'react';
 
-import { PostForm } from 'features/posts/components/PostForm';
+import PostForm from 'features/posts/components/PostForm';
 
 export default {
-  title: 'features/components/posts/PostForm',
+  title: 'features/components/posts/LoginForm',
   component: PostForm,
   parameters: { actions: { argTypesRegex: '^on.*' } },
   decorators: [

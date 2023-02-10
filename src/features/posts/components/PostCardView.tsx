@@ -1,6 +1,6 @@
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import EditIcon from '@mui/icons-material/Edit';
-import { Grid, IconButton, Paper } from '@mui/material';
+import { CircularProgress, Grid, IconButton, Paper } from '@mui/material';
 import React from 'react';
 
 import { Post } from 'features/posts/types';
@@ -20,12 +20,14 @@ const styles = {
 
 export type PostCardViewProps = {
   post: Post;
+  isDeleting: boolean;
+  isUpdating: boolean;
   onDeleteClick: (post: Post) => void;
   onUpdateClick: (post: Post) => void;
 };
 
-export const PostCardView = (props: PostCardViewProps) => {
-  const { post, onDeleteClick, onUpdateClick } = props;
+const PostCardView = (props: PostCardViewProps) => {
+  const { post, isDeleting, isUpdating, onDeleteClick, onUpdateClick } = props;
 
   const handleDeleteClick = () => {
     onDeleteClick(post);
@@ -38,7 +40,8 @@ export const PostCardView = (props: PostCardViewProps) => {
       <Grid xs={12} item key={post.id}>
         <Paper elevation={2} style={styles.Paper}>
           <span>
-            <strong>{post.title}</strong> - {post.body}
+            <strong>{post.attributes.title}</strong> - {post.attributes.description}<br/>
+            {post.attributes.content}
           </span>
           <br />
           <IconButton
@@ -46,14 +49,21 @@ export const PostCardView = (props: PostCardViewProps) => {
             aria-label="Edit"
             style={styles.Icon}
             onClick={handleUpdateClick}
+            disabled={isUpdating || isDeleting}
           >
-            <EditIcon />
+            {isUpdating ? <CircularProgress size={24} /> : <EditIcon />}
           </IconButton>
-          <IconButton color="secondary" aria-label="Delete" onClick={handleDeleteClick}>
-            <DeleteForeverIcon />
+          <IconButton
+            color="secondary"
+            aria-label="Delete"
+            onClick={handleDeleteClick}
+            disabled={isUpdating || isDeleting}
+          >
+            {isDeleting ? <CircularProgress size={24} /> : <DeleteForeverIcon />}
           </IconButton>
         </Paper>
       </Grid>
     </>
   );
 };
+export default PostCardView;

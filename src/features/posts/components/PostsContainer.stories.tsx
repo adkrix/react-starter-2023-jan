@@ -2,11 +2,11 @@ import { Container } from '@mui/material';
 import { ComponentMeta, ComponentStory } from '@storybook/react';
 import React from 'react';
 
-import { PostContainer } from 'features/posts/components/PostContainer';
+import { PostsContainer } from 'features/posts/components/PostsContainer';
 
 export default {
   title: 'features/components/posts/PostContainer',
-  component: PostContainer,
+  component: PostsContainer,
   decorators: [
     Story => (
       <Container sx={{ py: 4 }} maxWidth="md">
@@ -14,8 +14,8 @@ export default {
       </Container>
     ),
   ],
-} as ComponentMeta<typeof PostContainer>;
+} as ComponentMeta<typeof PostsContainer>;
 
-const Template: ComponentStory<typeof PostContainer> = () => <PostContainer />;
+const Template: ComponentStory<typeof PostsContainer> = () => <PostsContainer />;
 
 export const Primary = Template.bind({});

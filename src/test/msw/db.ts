@@ -5,19 +5,31 @@ import Env from 'config/Env';
 import initialMockedDb from 'test/msw/fixtures/db.initial.data.json';
 
 const models: ModelDictionary = {
+  logins: {
+    jwt: primaryKey(String),
+    user: {
+      id: Number,
+      email: String,
+      username: String,
+    },
+  },
   posts: {
     id: primaryKey(String),
-    title: String,
-    body: String,
+    attributes: {
+      title: String,
+      description: String,
+      content: String,
+    },
   },
 };
+const dbStorageName = 'demo-app-db';
 
 export const db = factory(models);
 
 export type Model = keyof typeof db;
 
 export const restoreDb = () => {
-  const dbFromLocalStorage = window.localStorage.getItem('demo-app-db');
+  const dbFromLocalStorage = window.localStorage.getItem(dbStorageName);
 
   if (dbFromLocalStorage) {
     return Object.assign(JSON.parse(dbFromLocalStorage));
@@ -34,7 +46,7 @@ export const persistDb = (model: Model) => {
   if (Env.isTest()) return;
   const data = restoreDb();
   data[model] = db[model].getAll();
-  window.localStorage.setItem('demo-app-db', JSON.stringify(data));
+  window.localStorage.setItem(dbStorageName, JSON.stringify(data));
 };
 
 export const initializeDb = () => {

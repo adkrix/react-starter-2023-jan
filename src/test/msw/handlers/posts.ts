@@ -1,25 +1,36 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
+import { nanoid } from '@reduxjs/toolkit';
 import { rest } from 'msw';
 
 import Env from 'config/Env';
 import { Post } from 'features/posts';
 import { db, persistDb } from 'test/msw/db';
+import { errorFormat, responseFormat, sleep } from 'test/msw/default';
 
-const BASE_URL = `${Env.API_BASE_URL}/posts`;
+const BASE_URL = `${Env.API_BASE_URL}/api/posts`;
+const WAIT_PERIOD = 700;
 
 export const postsHandlers = [
-  rest.get(BASE_URL, (req, res, ctx) => {
+  rest.get(BASE_URL, async (req, res, ctx) => {
     try {
+      await sleep(WAIT_PERIOD);
+      if (Math.random() > 0.9) {
+        throw Error('DB error');
+      }
       const result = db.posts.getAll();
-      return res(ctx.json(result));
+      return res(ctx.json(responseFormat(result)));
     } catch (error: any) {
-      return res(ctx.status(400), ctx.json({ message: error?.message || 'Server Error' }));
+      return res(ctx.status(400), ctx.json(errorFormat(error?.message)));
     }
   }),
 
-  rest.get(`${BASE_URL}/:postId`, (req, res, ctx) => {
+  rest.get(`${BASE_URL}/:postId`, async (req, res, ctx) => {
     try {
+      await sleep(WAIT_PERIOD);
+      if (Math.random() > 0.9) {
+        throw Error('DB error');
+      }
       const { postId } = req.params;
       const result = db.posts.findFirst({
         where: {
@@ -28,28 +39,37 @@ export const postsHandlers = [
           },
         },
       });
-      return res(ctx.json(result));
+      return res(ctx.json(responseFormat(result)));
     } catch (error: any) {
-      return res(ctx.status(400), ctx.json({ message: error?.message || 'Server Error' }));
+      return res(ctx.status(400), ctx.json(errorFormat(error?.message)));
     }
   }),
 
-  rest.post<Post>(BASE_URL, (req, res, ctx) => {
+  rest.post<Post>(BASE_URL, async (req, res, ctx) => {
     try {
-      const data = req.body;
+      await sleep(WAIT_PERIOD);
+      if (Math.random() > 0.9) {
+        throw Error('DB error');
+      }
+      const attributes = await req.json();
       const result = db.posts.create({
-        ...data,
+        id: nanoid(),
+        attributes,
       });
       persistDb('posts');
-      return res(ctx.json(result));
+      return res(ctx.json(responseFormat(result)));
     } catch (error: any) {
-      return res(ctx.status(400), ctx.json({ message: error?.message || 'Server Error' }));
+      return res(ctx.status(400), ctx.json(errorFormat(error?.message)));
     }
   }),
 
-  rest.put<Post>(`${BASE_URL}/:postId`, (req, res, ctx) => {
+  rest.put<Post>(`${BASE_URL}/:postId`, async (req, res, ctx) => {
     try {
-      const data = req.body;
+      await sleep(WAIT_PERIOD);
+      if (Math.random() > 0.9) {
+        throw Error('DB error');
+      }
+      const data = await req.json();
       const { postId } = req.params;
       const result = db.posts.update({
         where: {
@@ -60,14 +80,18 @@ export const postsHandlers = [
         data,
       });
       persistDb('posts');
-      return res(ctx.json(result));
+      return res(ctx.json(responseFormat(result)));
     } catch (error: any) {
-      return res(ctx.status(400), ctx.json({ message: error?.message || 'Server Error' }));
+      return res(ctx.status(400), ctx.json(errorFormat(error?.message)));
     }
   }),
 
-  rest.delete<Post>(`${BASE_URL}/:postId`, (req, res, ctx) => {
+  rest.delete<Post>(`${BASE_URL}/:postId`, async (req, res, ctx) => {
     try {
+      await sleep(WAIT_PERIOD);
+      if (Math.random() > 0.9) {
+        throw Error('DB error');
+      }
       const { postId } = req.params;
       const result = db.posts.delete({
         where: {
@@ -77,9 +101,9 @@ export const postsHandlers = [
         },
       });
       persistDb('posts');
-      return res(ctx.json(result));
+      return res(ctx.json(responseFormat(result)));
     } catch (error: any) {
-      return res(ctx.status(400), ctx.json({ message: error?.message || 'Server Error' }));
+      return res(ctx.status(400), ctx.json(errorFormat(error?.message)));
     }
   }),
 ];

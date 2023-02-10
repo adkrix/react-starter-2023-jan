@@ -1,6 +1,6 @@
 {
-  "short_name": "rbiedrawa-react-redux-rtk-saga-materialui-typescript-starter",
-  "name": "react-redux-rtk-saga-materialui-typescript-starter",
+  "short_name": "react-starter",
+  "name": "react-starter",
   "icons": [
     {
       "src": "favicon.ico",

@@ -1,12 +1,26 @@
 import { useCallback } from 'react';
 
-import { postsActions, selectPosts } from 'features/posts/store';
-import { Post, PostFormInput } from 'features/posts/types';
+import {
+  postsActions,
+  selectItems,
+  selectIsCreating,
+  selectDeleting,
+  selectUpdating,
+  selectIsLoading,
+  selectError,
+} from 'features/posts/store';
+import { Post, PostAttributes } from 'features/posts/types';
+import { TIdKey } from 'libs/redux';
 import { useAppDispatch, useAppSelector } from 'store/hooks';
 
 export type PostServiceOperators = {
-  posts: Post[];
-  createPost: (data: PostFormInput) => void;
+  items: Post[];
+  isLoading: boolean;
+  isCreating: boolean;
+  deleting: TIdKey[];
+  updating: TIdKey[];
+  error: string;
+  createPost: (data: PostAttributes) => void;
   fetchAllPosts: () => void;
   deletePost: (post: Post) => void;
   updatePost: (post: Post) => void;
@@ -20,29 +34,42 @@ export const usePostService = (): Readonly<PostServiceOperators> => {
   const dispatch = useAppDispatch();
 
   return {
-    posts: useAppSelector(selectPosts),
+    items: useAppSelector(selectItems),
+    error: useAppSelector(selectError),
+
+    isLoading: useAppSelector(selectIsLoading),
+    isCreating: useAppSelector(selectIsCreating),
+    updating: useAppSelector(selectUpdating),
+    deleting: useAppSelector(selectDeleting),
 
     createPost: useCallback(
-      (post: PostFormInput) => {
-        dispatch(postsActions.create({ title: post.title, body: post.body }));
+      (post: PostAttributes) => {
+        dispatch(postsActions.create({ title: post.title, description: post.description, content: post.content }));
       },
       [dispatch],
     ),
+
     fetchAllPosts: useCallback(() => {
       dispatch(postsActions.fetchAll());
     }, [dispatch]),
+
     deletePost: useCallback(
       (post: Post) => {
         dispatch(postsActions.delete(post));
       },
       [dispatch],
     ),
+
     updatePost: useCallback(
       (post: Post) => {
         dispatch(
           postsActions.update({
             ...post,
-            body: `Updated at ${new Date().toISOString()}`,
+            attributes: {
+              ...post.attributes,
+              description: `Description ${new Date().getMilliseconds()}`,
+              content: `Updated at ${new Date().toISOString()}`,
+            },
           }),
         );
       },

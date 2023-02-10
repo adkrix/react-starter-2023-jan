@@ -5,6 +5,7 @@ import Layout from 'components/Layout';
 
 const HomePage = React.lazy(() => import('pages/HomePage'));
 const AboutPage = React.lazy(() => import('pages/AboutPage'));
+const LoginPage = React.lazy(() => import('pages/LoginPage'));
 
 const AppRoutes = () => (
   <>
@@ -14,6 +15,7 @@ const AppRoutes = () => (
           <Route path="/" element={<HomePage />} />
           <Route path="/posts" element={<HomePage />} />
           <Route path="/about" element={<AboutPage />} />
+          <Route path="/login" element={<LoginPage />} />
         </Route>
       </Routes>
     </Suspense>

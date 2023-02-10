@@ -2,7 +2,7 @@ import { Container } from '@mui/material';
 import { ComponentMeta, ComponentStory } from '@storybook/react';
 import React from 'react';
 
-import { PostCardView } from 'features/posts/components/PostCardView';
+import PostCardView from 'features/posts/components/PostCardView';
 
 export default {
   title: 'features/components/posts/PostCardView',
@@ -21,5 +21,5 @@ const Template: ComponentStory<typeof PostCardView> = args => <PostCardView {...
 
 export const Primary = Template.bind({});
 Primary.args = {
-  post: { id: 'lEh', title: 'StoryBook', body: 'Example' },
+  post: { id: 'lEh', attributes: { title: 'StoryBook', description: 'Description', content: 'Example' } },
 };

@@ -7,14 +7,19 @@ export interface FormInputProps {
   name: string;
   control: Control<any>; // eslint-disable-line
   label: string;
+  type?: string;
+  multiline?: number;
 }
 
-export const FormTextField = ({ name, control, label }: FormInputProps) => (
+const FormTextField = ({ name, control, label, type = 'text', multiline = 0 }: FormInputProps) => (
   <Controller
     name={name}
     control={control}
     render={({ field: { onChange, value }, fieldState: { error } }) => (
       <TextField
+        type={type}
+        multiline={multiline > 0}
+        {...(multiline ? { rows: multiline } : {})}
         helperText={error ? error.message : null}
         size="small"
         error={!!error}
