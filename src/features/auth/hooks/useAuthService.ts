@@ -1,12 +1,12 @@
 import { useCallback } from 'react';
 
 import { authActions, selectIsLogged } from 'features/auth/store';
-import { LoginFormInput } from 'features/auth/types';
+import { TLoginForm } from 'features/auth/types';
 import { useAppDispatch, useAppSelector } from 'store/hooks';
 
 export type PostServiceOperators = {
   isLogged: boolean;
-  login: (data: LoginFormInput) => void;
+  login: (data: TLoginForm) => void;
 };
 
 /**
@@ -19,7 +19,7 @@ export const useAuthService = (): Readonly<PostServiceOperators> => {
   return {
     isLogged: useAppSelector(selectIsLogged),
     login: useCallback(
-      (loginRequest: LoginFormInput) => {
+      (loginRequest: TLoginForm) => {
         dispatch(authActions.login(loginRequest));
       },
       [dispatch],

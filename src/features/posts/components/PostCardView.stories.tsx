@@ -21,5 +21,8 @@ const Template: ComponentStory<typeof PostCardView> = args => <PostCardView {...
 
 export const Primary = Template.bind({});
 Primary.args = {
-  post: { id: 'lEh', attributes: { title: 'StoryBook', description: 'Description', content: 'Example' } },
+  post: {
+    id: 'lEh',
+    attributes: { title: 'StoryBook', description: 'Description', content: 'Example' },
+  },
 };

@@ -6,10 +6,15 @@ import { getPosts } from 'features/posts/api';
 import { onGetPosts } from 'features/posts/store/posts.sagas';
 import postsReducer, { initPostState, postsActions } from 'features/posts/store/posts.slice';
 import { Post } from 'features/posts/types';
-import { SucceededResponse } from 'libs/core/api';
+import { TSucceededResponse } from 'libs/core/api';
 
-const expectedSagaPosts: SucceededResponse<Post[]> = {
-  data: [{ id: '1', attributes: { title: 'saga-test-example', description: 'Description', content: nanoid() } }],
+const expectedSagaPosts: TSucceededResponse<Post[]> = {
+  data: [
+    {
+      id: '1',
+      attributes: { title: 'saga-test-example', description: 'Description', content: nanoid() },
+    },
+  ],
   meta: {},
 };
 

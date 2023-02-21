@@ -6,13 +6,13 @@ import reducer, {
 import { initRootState } from 'features/states';
 import { Post } from 'features/posts/types';
 import { RootState, store } from 'store/store';
-import { SucceededResponse } from '../../../../libs/core/api';
+import { TSucceededResponse } from '../../../../libs/core/api';
 
 const expectedPosts: Post[] = [
   { id: '1', attributes: { content: 'post1', description: 'description1', title: 'post1' } },
   { id: '2', attributes: { content: 'post2', description: 'description2', title: 'post2' } },
 ];
-const expectedResponse: SucceededResponse<Post[]> = {
+const expectedResponse: TSucceededResponse<Post[]> = {
   data: expectedPosts,
   meta: {},
 };
@@ -66,7 +66,9 @@ describe('Selectors tests', () => {
   });
 });
 
-const expectedSagaPosts: Post[] = [{ id: '1', attributes: { title: 'saga', description: 'saga', content: 'saga' } }];
+const expectedSagaPosts: Post[] = [
+  { id: '1', attributes: { title: 'saga', description: 'saga', content: 'saga' } },
+];
 
 jest.mock('../../api/index', () => ({
   async getPosts() {

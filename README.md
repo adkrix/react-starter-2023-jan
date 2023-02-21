@@ -11,6 +11,7 @@
 ![jest](https://img.shields.io/badge/Jest%20-%23F7DF1E.svg?logo=jest&logoColor=white&color=74C417)
 ![cypress](https://img.shields.io/badge/Cypress-17202C?logo=cypress&logoColor=white)
 ![license](https://img.shields.io/github/license/rbiedrawa/kafka-monitoring)
+
 </div>
 
 <div align="center">
@@ -22,27 +23,27 @@ with [Typescript](https://www.typescriptlang.org/), [Redux Toolkit](https://redu
 
 </div>
 
-********
+---
 
 ## Table of Content
 
 <!-- toc -->
 
 - [About](#about)
-    * [Features](#features)
-    * [Project Structure](#project-structure)
+  - [Features](#features)
+  - [Project Structure](#project-structure)
 - [Getting Started](#-getting-started)
-    * [Prerequisites](#prerequisites)
-    * [Installation](#installation)
-    * [Development](#development)
-    * [Build](#build)
-    * [Testing](#testing)
-        + [Unit / Integration tests](#unit--integration-tests)
-        + [E2E tests](#e2e-tests)
-    * [Storybook](#storybook)
+  - [Prerequisites](#prerequisites)
+  - [Installation](#installation)
+  - [Development](#development)
+  - [Build](#build)
+  - [Testing](#testing)
+    - [Unit / Integration tests](#unit--integration-tests)
+    - [E2E tests](#e2e-tests)
+  - [Storybook](#storybook)
 - [Code Quality](#-code-quality)
-    * [Overview](#overview)
-    * [Absolute imports](#absolute-imports)
+  - [Overview](#overview)
+  - [Absolute imports](#absolute-imports)
 - [Release](#-release)
 - [Useful dev tools](#-useful-dev-tools)
 - [References](#-references)
@@ -57,38 +58,38 @@ with [Typescript](https://www.typescriptlang.org/), [Redux Toolkit](https://redu
 
 ![about.gif](./_docs/img/about.gif)
 
-</div>    
+</div>
 
 ### Features
 
 1. [React.js](https://reactjs.org/) CRUD example with Redux Saga.
 2. [Typescript](https://www.typescriptlang.org/) for type safety
 3. Core libraries
-    * [Redux](https://redux.js.org/)
-    * [Redux Toolkit](https://redux-toolkit.js.org/)
-    * [Redux Saga](https://redux-saga.js.org/)
-    * [Redux First History](https://github.com/salvoravida/redux-first-history)
-    * [Redux Logger](https://github.com/LogRocket/redux-logger)
-    * [React Router](https://reactrouter.com/)
-    * [React Hook Form](https://react-hook-form.com/)
-    * [Yup](https://github.com/jquense/yup)
-    * [Axios](https://github.com/axios/axios)
-    * [React-i18next](https://react.i18next.com/)
-    * [MUI - Material UI](https://mui.com/)
-    * [Styled Components](https://styled-components.com/)
+   - [Redux](https://redux.js.org/)
+   - [Redux Toolkit](https://redux-toolkit.js.org/)
+   - [Redux Saga](https://redux-saga.js.org/)
+   - [Redux First History](https://github.com/salvoravida/redux-first-history)
+   - [Redux Logger](https://github.com/LogRocket/redux-logger)
+   - [React Router](https://reactrouter.com/)
+   - [React Hook Form](https://react-hook-form.com/)
+   - [Yup](https://github.com/jquense/yup)
+   - [Axios](https://github.com/axios/axios)
+   - [React-i18next](https://react.i18next.com/)
+   - [MUI - Material UI](https://mui.com/)
+   - [Styled Components](https://styled-components.com/)
 4. Test libraries
-    * [Jest](https://jestjs.io/)
-    * [React Testing Library](https://testing-library.com/docs/react-testing-library/intro/)
-    * [Redux Saga Test Plan](https://github.com/jfairbank/redux-saga-test-plan)
-    * [Cypress](https://www.cypress.io/)
+   - [Jest](https://jestjs.io/)
+   - [React Testing Library](https://testing-library.com/docs/react-testing-library/intro/)
+   - [Redux Saga Test Plan](https://github.com/jfairbank/redux-saga-test-plan)
+   - [Cypress](https://www.cypress.io/)
 5. Other tools/libraries
-    * [StoryBook](https://storybook.js.org/)
-    * [Mock Service Worker](https://mswjs.io/)
-    * [ESLint](https://eslint.org/), [Prettier](https://eslint.org/)
-      , [Lint-staged](https://github.com/okonet/lint-staged), [Pretty Quick](https://github.com/azz/pretty-quick)
-    * [Husky](https://typicode.github.io/husky/#/)
-    * [Commitlint](https://commitlint.js.org/#/)
-    * [Semantic Release](https://github.com/semantic-release/semantic-release)
+   - [StoryBook](https://storybook.js.org/)
+   - [Mock Service Worker](https://mswjs.io/)
+   - [ESLint](https://eslint.org/), [Prettier](https://eslint.org/)
+     , [Lint-staged](https://github.com/okonet/lint-staged), [Pretty Quick](https://github.com/azz/pretty-quick)
+   - [Husky](https://typicode.github.io/husky/#/)
+   - [Commitlint](https://commitlint.js.org/#/)
+   - [Semantic Release](https://github.com/semantic-release/semantic-release)
 6. Opinionated folder structure
 7. Internationalization for react app using [React-i18next](https://react.i18next.com/)
 8. Material UI Dark Mode support
@@ -131,25 +132,25 @@ with [Typescript](https://www.typescriptlang.org/), [Redux Toolkit](https://redu
 <details>
   <summary><a href="https://github.com/nvm-sh/nvm">nvm</a></summary>
 
-  ```shell
-  brew install nvm
-  ```
+```shell
+brew install nvm
+```
 
 </details>
 <details>
   <summary><a href="https://nodejs.org/en/">Node.js v17</a></summary>
 
-  ```shell
-  nvm install v17.4.0
-  ```
+```shell
+nvm install v17.4.0
+```
 
 </details>
 <details>
   <summary><a href="https://yarnpkg.com/">Yarn</a></summary>
 
-  ```shell
-  npm install --global yarn
-  ```
+```shell
+npm install --global yarn
+```
 
 </details>
 
@@ -258,9 +259,9 @@ Create release version and generate a changelog file:
 GITHUB_TOKEN=YOUR-TOKEN yarn release
 ```
 
-> :bulb: **Tip:**  `--no-ci` - allows you to trigger release from no ci environment e.g. local
+> :bulb: **Tip:** `--no-ci` - allows you to trigger release from no ci environment e.g. local
 
-> :bulb: **Tip:**  `yarn release:dry-run` - allows you to see what commands would be run, without committing to git or updating files.
+> :bulb: **Tip:** `yarn release:dry-run` - allows you to see what commands would be run, without committing to git or updating files.
 
 ## 🛠 Useful dev tools
 
@@ -296,15 +297,13 @@ GITHUB_TOKEN=YOUR-TOKEN yarn release
 
 Distributed under the MIT License. See `LICENSE` for more information.
 
-
 ## Commit title examples
 
-* chore(release): 1.0.0 (tag: v1.0.0)
-* feat(semantic-release): configured semantic release plugin
-* feat(axios): configured axios
-* refactor(cleanup): code cleanup
-* refactor(code-cleanup): post card view update
-* build: update dependencies
-* style(import-orders): configured import orders
-* docs(readme): updated docs
-
+- chore(release): 1.0.0 (tag: v1.0.0)
+- feat(semantic-release): configured semantic release plugin
+- feat(axios): configured axios
+- refactor(cleanup): code cleanup
+- refactor(code-cleanup): post card view update
+- build: update dependencies
+- style(import-orders): configured import orders
+- docs(readme): updated docs

@@ -44,8 +44,18 @@ const PostForm = (props: PostFormProps) => {
   return (
     <Stack sx={{ pt: 0 }} direction="column" spacing={1} justifyContent="center">
       <FormTextField name="title" label={t('home.form.title')} control={control} />
-      <FormTextField multiline={2} name="description" label={t('home.form.description')} control={control} />
-      <FormTextField multiline={5} name="content" label={t('home.form.content')} control={control} />
+      <FormTextField
+        multiline={2}
+        name="description"
+        label={t('home.form.description')}
+        control={control}
+      />
+      <FormTextField
+        multiline={5}
+        name="content"
+        label={t('home.form.content')}
+        control={control}
+      />
       <Button onClick={handleSubmit(onSubmitClick)} variant={'contained'} disabled={isCreating}>
         {isCreating ? <CircularProgress color={'secondary'} size={24} /> : t('home.buttons.submit')}
       </Button>

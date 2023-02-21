@@ -44,7 +44,13 @@ export const usePostService = (): Readonly<PostServiceOperators> => {
 
     createPost: useCallback(
       (post: PostAttributes) => {
-        dispatch(postsActions.create({ title: post.title, description: post.description, content: post.content }));
+        dispatch(
+          postsActions.create({
+            title: post.title,
+            description: post.description,
+            content: post.content,
+          }),
+        );
       },
       [dispatch],
     ),

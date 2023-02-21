@@ -1,12 +1,12 @@
 // Strapi style
-import { AuthResponse, User } from 'libs/core/api';
+import { TAuthResponse, TUser } from 'libs/core/api';
 
-export type LoginFormInput = {
+export type TLoginForm = {
   identifier: string;
   password: string;
 };
 
-export type LoginResponse = AuthResponse<User>;
+export type LoginResponse = TAuthResponse<TUser>;
 
 /*
 STRAPI v4.6.0

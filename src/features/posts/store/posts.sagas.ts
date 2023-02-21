@@ -4,7 +4,7 @@ import { call, put, takeEvery } from 'redux-saga/effects';
 import { createPost, deletePost, getPosts, updatePost } from 'features/posts/api';
 import { postsActions as actions } from 'features/posts/store/posts.slice';
 import { Post, PostAttributes } from 'features/posts/types';
-import { createFailedResponse, SucceededResponse } from 'libs/core/api';
+import { createFailedResponse, TSucceededResponse } from 'libs/core/api';
 
 type CreatePostType = {
   type: typeof actions.create;
@@ -22,7 +22,7 @@ type DeletePostType = {
 // Worker Sagas
 export function* onGetPosts(): SagaIterator {
   try {
-    const posts: SucceededResponse<Post[]> = yield call(getPosts);
+    const posts: TSucceededResponse<Post[]> = yield call(getPosts);
     yield put(actions.fetchAllSucceeded(posts));
   } catch (e: unknown) {
     yield put(actions.fetchAllFailed(createFailedResponse(e)));
@@ -42,7 +42,7 @@ function* onCreatePost({ payload }: CreatePostType): SagaIterator {
 
 function* onUpdatePost({ payload }: UpdatePostType): SagaIterator {
   try {
-    const post: SucceededResponse<Post> = yield call(updatePost, payload);
+    const post: TSucceededResponse<Post> = yield call(updatePost, payload);
     yield put(actions.updateSucceeded(post));
   } catch (e) {
     yield put(actions.updateFailed(createFailedResponse(e, { id: payload.id })));
@@ -51,7 +51,7 @@ function* onUpdatePost({ payload }: UpdatePostType): SagaIterator {
 
 function* onDeletePost({ payload }: DeletePostType): SagaIterator {
   try {
-    const post: SucceededResponse<Post> = yield call(deletePost, payload);
+    const post: TSucceededResponse<Post> = yield call(deletePost, payload);
     yield put(actions.deleteSucceeded(post));
   } catch (e) {
     yield put(actions.deleteFailed(createFailedResponse(e, { id: payload.id })));

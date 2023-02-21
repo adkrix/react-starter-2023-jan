@@ -2,7 +2,7 @@ import { nanoid } from '@reduxjs/toolkit';
 import { rest } from 'msw';
 
 import Env from 'config/Env';
-import { LoginFormInput, LoginResponse } from 'features/auth';
+import { TLoginForm, LoginResponse } from 'features/auth';
 import { db, persistDb } from 'test/msw/db';
 import { defaultUserEmail, defaultUserPassword } from 'test/msw/default';
 
@@ -11,7 +11,7 @@ const BASE_URL = `${Env.API_BASE_URL}/api/auth`;
 const LOGIN_URL = `${BASE_URL}/local`;
 
 export const authHandlers = [
-  rest.post<LoginFormInput>(LOGIN_URL, async (req, res, ctx) => {
+  rest.post<TLoginForm>(LOGIN_URL, async (req, res, ctx) => {
     const { identifier, password } = await req.json();
 
     if (identifier === defaultUserEmail && password === defaultUserPassword) {

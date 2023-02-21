@@ -5,13 +5,13 @@ import { useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 import * as Yup from 'yup';
 
-import { LoginFormInput } from 'features/auth/types';
+import { TLoginForm } from 'features/auth/types';
 import FormTextField from 'libs/ui/components/FormTextField';
 import { defaultUserEmail, defaultUserPassword } from 'test/msw/default';
 
 export type LoginFormProps = {
-  defaultValues?: LoginFormInput;
-  onSubmitClick(data: LoginFormInput): void;
+  defaultValues?: TLoginForm;
+  onSubmitClick(data: TLoginForm): void;
 };
 
 export const LoginForm = (props: LoginFormProps) => {
@@ -32,7 +32,7 @@ export const LoginForm = (props: LoginFormProps) => {
     password: Yup.string().required(t('login.form.validation.password-required')),
   });
 
-  const methods = useForm<LoginFormInput>({
+  const methods = useForm<TLoginForm>({
     defaultValues,
     resolver: yupResolver(newPostValidationSchema),
   });

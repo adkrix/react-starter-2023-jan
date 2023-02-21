@@ -1,13 +1,13 @@
-import { FailedResponse, SucceededResponse } from 'libs/core/api';
+import { TFailedResponse, TSucceededResponse } from 'libs/core/api';
 
 export const defaultUserEmail = 'editor@example.com';
 export const defaultUserPassword = 'password';
 
-export function responseFormat<T>(data: T): SucceededResponse<T> {
+export function responseFormat<T>(data: T): TSucceededResponse<T> {
   return { data, meta: {} };
 }
 
-export function errorFormat(message = 'Server error', status = 400): FailedResponse {
+export function errorFormat(message = 'Server error', status = 400): TFailedResponse {
   return { data: null, error: { status, message, name: 'Error', details: {} } };
 }
 

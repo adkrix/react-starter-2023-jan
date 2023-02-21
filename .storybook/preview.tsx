@@ -1,11 +1,11 @@
 /* eslint-disable */
 
-import { Provider } from 'react-redux'
-import { history, store } from 'store/store'
-import { HistoryRouter as Router } from 'redux-first-history/rr6'
-import React from 'react'
+import { Provider } from 'react-redux';
+import { history, store } from 'store/store';
+import { HistoryRouter as Router } from 'redux-first-history/rr6';
+import React from 'react';
 
-import i18n from 'config/i18n'
+import i18n from 'config/i18n';
 
 export const parameters = {
   actions: { argTypesRegex: '^on[A-Z].*' },
@@ -22,12 +22,12 @@ export const parameters = {
     ru: { title: 'Russian', left: '🇷🇺' },
     pl: { title: 'Polish', left: '🇵🇱' },
   },
-}
+};
 
 // Start mock service worker
-const { worker } = require('../src/test/msw/browser')
-worker.start()
-worker.printHandlers()
+const { worker } = require('../src/test/msw/browser');
+worker.start();
+worker.printHandlers();
 
 export const decorators = [
   (Story: any) => (
@@ -39,4 +39,4 @@ export const decorators = [
       </Provider>
     </>
   ),
-]
+];

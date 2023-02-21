@@ -1,7 +1,7 @@
 import { PayloadAction } from '@reduxjs/toolkit';
 
-import { FailedResponse, SucceededResponse } from 'libs/core/api';
-import { TIdKey, TReading, TList, TCreating, TUpdating, TDeleting } from 'libs/redux/types';
+import { TFailedResponse, TSucceededResponse } from 'libs/core/api';
+import { TIdKey, TReading, TList, TCreating, TUpdating, TDeleting, TIdMap } from 'libs/redux/types';
 
 export const getListKit = <T extends { id: TIdKey }>() => ({
   state(): TList<T> {
@@ -15,12 +15,12 @@ export const getListKit = <T extends { id: TIdKey }>() => ({
     state.error = '';
     state.isLoading = true;
   },
-  succeeded(state: TList<T>, action: PayloadAction<SucceededResponse<T[]>>) {
+  succeeded(state: TList<T>, action: PayloadAction<TSucceededResponse<T[]>>) {
     state.items = action.payload.data;
     state.error = '';
     state.isLoading = false;
   },
-  failed(state: TList<T>, action: PayloadAction<FailedResponse>) {
+  failed(state: TList<T>, action: PayloadAction<TFailedResponse>) {
     state.error = action.payload.error.message;
     state.isLoading = false;
   },
@@ -41,20 +41,13 @@ export const getCreatingKit = () => ({
     state.creatingError = '';
     state.isCreating = false;
   },
-  failed(state: TCreating, action: PayloadAction<FailedResponse>) {
+  failed(state: TCreating, action: PayloadAction<TFailedResponse>) {
     state.creatingError = action.payload.error.message;
     state.isCreating = false;
   },
 });
 
-export const getReadingSet = <T extends { id: TIdKey }>() => ({
-  loading(): TReading<T> {
-    return {
-      item: <T>{},
-      readingError: '',
-      isReading: false,
-    };
-  },
+export const getReadingSet = <T extends TIdMap>() => ({
   state(): TReading<T> {
     return {
       item: <T>{},
@@ -66,17 +59,17 @@ export const getReadingSet = <T extends { id: TIdKey }>() => ({
     state.readingError = '';
     state.isReading = true;
   },
-  succeeded(state: TReading<T>, action: PayloadAction<SucceededResponse<T>>) {
+  succeeded(state: TReading<T>, action: PayloadAction<TSucceededResponse<T>>) {
     state.item = action.payload.data;
     state.isReading = false;
   },
-  failed(state: TReading<T>, action: PayloadAction<FailedResponse>) {
+  failed(state: TReading<T>, action: PayloadAction<TFailedResponse>) {
     state.readingError = action.payload.error.message;
     state.isReading = false;
   },
 });
 
-export const getUpdatingKit = <T extends { id: TIdKey }>() => ({
+export const getUpdatingKit = <T extends TIdMap>() => ({
   state(): TUpdating<T> {
     return {
       items: [],
@@ -94,18 +87,18 @@ export const getUpdatingKit = <T extends { id: TIdKey }>() => ({
     delete state.updatingErrors[action.payload.id];
     state.updating = [...state.updating, action.payload.id];
   },
-  succeeded(state: TUpdating<T>, action: PayloadAction<SucceededResponse<T>>) {
+  succeeded(state: TUpdating<T>, action: PayloadAction<TSucceededResponse<T>>) {
     const { data } = action.payload;
     state.items = state.items.map((item: T) => (item.id === data.id ? data : item));
     state.updating = state.updating.filter(id => id !== data.id);
   },
-  failed(state: TUpdating<T>, action: PayloadAction<FailedResponse>) {
+  failed(state: TUpdating<T>, action: PayloadAction<TFailedResponse>) {
     state.updatingErrors[action.payload.data?.id as TIdKey] = action.payload.error.message;
     state.updating = state.updating.filter(id => id !== action.payload.data?.id);
   },
 });
 
-export const getDeletingKit = <T extends { id: TIdKey }>() => ({
+export const getDeletingKit = <T extends TIdMap>() => ({
   state(): TDeleting<T> {
     return {
       items: [],
@@ -123,18 +116,18 @@ export const getDeletingKit = <T extends { id: TIdKey }>() => ({
     delete state.deletingErrors[action.payload.id];
     state.deleting = [...state.deleting, action.payload.id];
   },
-  succeeded(state: TDeleting<T>, action: PayloadAction<SucceededResponse<T>>) {
+  succeeded(state: TDeleting<T>, action: PayloadAction<TSucceededResponse<T>>) {
     const { data } = action.payload;
     state.items = state.items.filter(item => item.id !== data.id);
     state.deleting = state.deleting.filter(id => id !== data.id);
   },
-  failed(state: TDeleting<T>, action: PayloadAction<FailedResponse>) {
+  failed(state: TDeleting<T>, action: PayloadAction<TFailedResponse>) {
     state.deletingErrors[action.payload.data?.id as TIdKey] = action.payload.error.message;
     state.deleting = state.deleting.filter(id => id !== action.payload.data?.id);
   },
 });
 
-export const getCrudKit = <T extends { id: TIdKey }>() => ({
+export const getCrudKit = <T extends TIdMap>() => ({
   creating: getCreatingKit(),
   reading: getReadingSet<T>(),
   updating: getUpdatingKit<T>(),

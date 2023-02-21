@@ -1,8 +1,7 @@
-// DUCKS pattern
 import { createAction, createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-import { LoginResponse, LoginFormInput } from 'features/auth/types';
-import { FailedResponse, defaultUser } from 'libs/core/api';
+import { LoginResponse, TLoginForm } from 'features/auth/types';
+import { TFailedResponse, defaultUser } from 'libs/core/api';
 import type { RootState } from 'store/store';
 
 export type AuthState = LoginResponse & {
@@ -24,7 +23,7 @@ export const authSlice = createSlice({
   reducers: {
     login(state) {
       state.error = '';
-      state.isLoading = false;
+      state.isLoading = true;
     },
     loginSucceeded(state, action: PayloadAction<LoginResponse>) {
       state.jwt = action.payload.jwt;
@@ -32,7 +31,7 @@ export const authSlice = createSlice({
       state.error = '';
       state.isLoading = false;
     },
-    loginFailed(state, action: PayloadAction<FailedResponse>) {
+    loginFailed(state, action: PayloadAction<TFailedResponse>) {
       state.jwt = '';
       state.user = defaultUser();
       state.error = action.payload.error.message;
@@ -43,9 +42,9 @@ export const authSlice = createSlice({
 
 // Actions
 export const authActions = {
-  login: createAction(`${authSlice.name}/login`, (loginRequest: LoginFormInput) => ({
-    payload: loginRequest,
-  })),
+  login: createAction<TLoginForm>(`${authSlice.name}/login`),
+  loginSucceeded: authSlice.actions.loginSucceeded,
+  loginFailed: authSlice.actions.loginFailed,
 };
 
 // Selectors
