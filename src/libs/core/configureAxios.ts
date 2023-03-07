@@ -1,4 +1,7 @@
 import axios from 'axios';
+import store from 'store2';
+
+import { STORE_JWT_KEY } from 'features/auth/constants';
 
 export default function makeApi(baseURL: string) {
   const api = axios.create({
@@ -11,11 +14,12 @@ export default function makeApi(baseURL: string) {
 
   api.interceptors.request.use(
     config => {
-      if (localStorage.getItem('authToken')) {
+      const jwt = store.get(STORE_JWT_KEY);
+      if (jwt) {
         // @ts-ignore
         config.headers = {
           ...config.headers,
-          Authorization: `Bearer ${localStorage.getItem('authToken')}`,
+          Authorization: `Bearer ${jwt}`,
         };
       }
 

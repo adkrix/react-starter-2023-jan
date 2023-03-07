@@ -7,6 +7,8 @@ import { useAppDispatch, useAppSelector } from 'store/hooks';
 export type PostServiceOperators = {
   isLogged: boolean;
   login: (data: TLoginForm) => void;
+  logout: () => void;
+  restoreUser: () => void;
 };
 
 /**
@@ -24,6 +26,12 @@ export const useAuthService = (): Readonly<PostServiceOperators> => {
       },
       [dispatch],
     ),
+    logout: useCallback(() => {
+      dispatch(authActions.logout());
+    }, [dispatch]),
+    restoreUser: useCallback(() => {
+      dispatch(authActions.restoreUser());
+    }, [dispatch]),
   };
 };
 

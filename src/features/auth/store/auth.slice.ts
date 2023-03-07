@@ -1,10 +1,10 @@
 import { createAction, createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-import { LoginResponse, TLoginForm } from 'features/auth/types';
+import { TLoginResponse, TLoginForm } from 'features/auth/types';
 import { TFailedResponse, defaultUser } from 'libs/core/api';
 import type { RootState } from 'store/store';
 
-export type AuthState = LoginResponse & {
+export type AuthState = TLoginResponse & {
   isLoading: boolean;
   error: string;
 };
@@ -25,7 +25,7 @@ export const authSlice = createSlice({
       state.error = '';
       state.isLoading = true;
     },
-    loginSucceeded(state, action: PayloadAction<LoginResponse>) {
+    loginSucceeded(state, action: PayloadAction<TLoginResponse>) {
       state.jwt = action.payload.jwt;
       state.user = action.payload.user;
       state.error = '';
@@ -37,6 +37,12 @@ export const authSlice = createSlice({
       state.error = action.payload.error.message;
       state.isLoading = false;
     },
+    logout(state) {
+      state.jwt = '';
+      state.user = defaultUser();
+      state.error = '';
+      state.isLoading = false;
+    },
   },
 });
 
@@ -45,6 +51,8 @@ export const authActions = {
   login: createAction<TLoginForm>(`${authSlice.name}/login`),
   loginSucceeded: authSlice.actions.loginSucceeded,
   loginFailed: authSlice.actions.loginFailed,
+  logout: createAction(`${authSlice.name}/logout`),
+  restoreUser: createAction(`${authSlice.name}/restoreUser`),
 };
 
 // Selectors

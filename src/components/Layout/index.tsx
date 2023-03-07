@@ -12,8 +12,8 @@ const Layout = () => {
   const { i18n } = useTranslation();
 
   // TODO: move state to redux
-  const onChangeLanguage = (lang: string) => {
-    i18n.changeLanguage(lang);
+  const onChangeLanguage = async (lang: string) => {
+    await i18n.changeLanguage(lang);
   };
 
   const colorMode = React.useMemo(
@@ -48,8 +48,8 @@ const Layout = () => {
           <Box
             sx={{
               bgcolor: 'background.paper',
-              pt: 3,
-              pb: 3,
+              pt: 2,
+              pb: 2,
             }}
           >
             <Outlet />

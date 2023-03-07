@@ -1,6 +1,6 @@
 {
   "home": {
-    "title": "Posts",
+    "title": "Home",
     "form": {
       "title": "title",
       "content": "content",
@@ -45,6 +45,8 @@
     "links": {
       "home": "Home",
       "about": "About",
+      "posts": "Posts",
+      "logout": "Logout",
       "login": "Login"
     }
   }

@@ -1,6 +1,6 @@
 {
   "home": {
-    "title": "Posts",
+    "title": "Strona Domowa",
     "form": {
       "title": "tytuł",
       "content": "ntkj",
@@ -45,6 +45,8 @@
     "links": {
       "home": "Strona Domowa",
       "about": "O Nas",
+      "posts": "Posts",
+      "logout": "Logout",
       "login": "Login"
     }
   }

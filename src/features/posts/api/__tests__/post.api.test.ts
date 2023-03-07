@@ -1,7 +1,8 @@
 import { describe, expect, it } from '@jest/globals';
 
-import { getPosts } from '../index';
 import fixture from 'test/msw/fixtures/db.initial.data.json';
+
+import { getPosts } from '../index';
 
 describe('Post API test - MSW example', () => {
   it('should fetch all Posts', async () => {

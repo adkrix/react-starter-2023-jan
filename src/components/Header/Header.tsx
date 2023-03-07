@@ -8,6 +8,15 @@ import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { NavLink as RouterLink } from 'react-router-dom';
 
+import { useAuthService } from 'features/auth/hooks/useAuthService';
+import {
+  ABOUT_ROUTER,
+  LOGIN_ROUTER,
+  LOGOUT_ROUTER,
+  POSTS_ROUTER,
+  ROOT_ROUTER,
+} from 'routes/constants';
+
 type HeaderProps = {
   currentThemeMode: 'light' | 'dark';
   onChangeThemeClick: () => void;
@@ -16,6 +25,7 @@ type HeaderProps = {
 
 const Header = (props: HeaderProps) => {
   const { t } = useTranslation();
+  const { isLogged } = useAuthService();
 
   const { currentThemeMode, onChangeThemeClick, onChangeLanguage } = props;
 
@@ -34,31 +44,54 @@ const Header = (props: HeaderProps) => {
           <nav>
             <Link
               component={RouterLink}
-              to={'/'}
+              to={ROOT_ROUTER}
               variant="button"
               color="text.primary"
               sx={{ my: 1, mx: 1.5 }}
             >
               {t('navigation.links.home')}
             </Link>
-            <Link
-              component={RouterLink}
-              to={'/about'}
-              variant="button"
-              color="text.primary"
-              sx={{ my: 1, mx: 1.5 }}
-            >
-              {t('navigation.links.about')}
-            </Link>
-            <Link
-              component={RouterLink}
-              to={'/login'}
-              variant="button"
-              color="text.primary"
-              sx={{ my: 1, mx: 1.5 }}
-            >
-              {t('navigation.links.login')}
-            </Link>
+            {isLogged ? (
+              <>
+                <Link
+                  component={RouterLink}
+                  to={POSTS_ROUTER}
+                  variant="button"
+                  color="text.primary"
+                  sx={{ my: 1, mx: 1.5 }}
+                >
+                  {t('navigation.links.posts')}
+                </Link>
+                <Link
+                  component={RouterLink}
+                  to={ABOUT_ROUTER}
+                  variant="button"
+                  color="text.primary"
+                  sx={{ my: 1, mx: 1.5 }}
+                >
+                  {t('navigation.links.about')}
+                </Link>
+                <Link
+                  component={RouterLink}
+                  to={LOGOUT_ROUTER}
+                  variant="button"
+                  color="text.primary"
+                  sx={{ my: 1, mx: 1.5 }}
+                >
+                  {t('navigation.links.logout')}
+                </Link>
+              </>
+            ) : (
+              <Link
+                component={RouterLink}
+                to={LOGIN_ROUTER}
+                variant="button"
+                color="text.primary"
+                sx={{ my: 1, mx: 1.5 }}
+              >
+                {t('navigation.links.login')}
+              </Link>
+            )}
             <ButtonGroup variant="text" color="inherit">
               <Button onClick={() => onChangeLanguage('en')}>🇺🇸</Button>
               <Button onClick={() => onChangeLanguage('ru')}>🇷🇺</Button>

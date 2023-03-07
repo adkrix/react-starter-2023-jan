@@ -48,6 +48,7 @@ export const getCreatingKit = () => ({
 });
 
 export const getReadingSet = <T extends TIdMap>() => ({
+  // stylelint-disable-next-line
   state(): TReading<T> {
     return {
       item: <T>{},

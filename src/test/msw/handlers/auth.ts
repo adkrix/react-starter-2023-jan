@@ -2,11 +2,10 @@ import { nanoid } from '@reduxjs/toolkit';
 import { rest } from 'msw';
 
 import Env from 'config/Env';
-import { TLoginForm, LoginResponse } from 'features/auth';
+import { TLoginForm, TLoginResponse } from 'features/auth';
 import { db, persistDb } from 'test/msw/db';
 import { defaultUserEmail, defaultUserPassword } from 'test/msw/default';
 
-// const BASE_URL = `${Env.API_BASE_URL}/login`;
 const BASE_URL = `${Env.API_BASE_URL}/api/auth`;
 const LOGIN_URL = `${BASE_URL}/local`;
 
@@ -15,7 +14,7 @@ export const authHandlers = [
     const { identifier, password } = await req.json();
 
     if (identifier === defaultUserEmail && password === defaultUserPassword) {
-      const loggedData: LoginResponse = {
+      const loggedData: TLoginResponse = {
         jwt: nanoid(),
         user: {
           id: 1,

@@ -1,6 +1,6 @@
 {
   "home": {
-    "title": "Posts",
+    "title": "Главная",
     "form": {
       "title": "заголовок",
       "description": "описание",
@@ -45,6 +45,8 @@
     "links": {
       "home": "Главная",
       "about": "О нас",
+      "posts": "Новости",
+      "logout": "Выйти",
       "login": "Логин"
     }
   }

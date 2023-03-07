@@ -3,10 +3,10 @@ import reducer, {
   postsActions,
   selectItems,
 } from 'features/posts/store/posts.slice';
-import { initRootState } from 'features/states';
 import { Post } from 'features/posts/types';
+import { initRootState } from 'features/states';
+import { TSucceededResponse } from 'libs/core/api';
 import { RootState, store } from 'store/store';
-import { TSucceededResponse } from '../../../../libs/core/api';
 
 const expectedPosts: Post[] = [
   { id: '1', attributes: { content: 'post1', description: 'description1', title: 'post1' } },

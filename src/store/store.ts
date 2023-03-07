@@ -31,7 +31,6 @@ const makeStore = () => {
   });
 
   sagaMiddleware.run(rootSaga);
-
   return store;
 };
 

@@ -6,7 +6,8 @@ export type TLoginForm = {
   password: string;
 };
 
-export type LoginResponse = TAuthResponse<TUser>;
+export type TLoginResponse = TAuthResponse<TUser>;
+export type TUserResponse = TUser;
 
 /*
 STRAPI v4.6.0
